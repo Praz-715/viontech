@@ -1,0 +1,19 @@
+# Windows junctions to .agents/skills (machine-specific, recreate locally)
+.claude/
+.agents/
+
+# Dependencies
+node_modules/
+
+# Nuxt build output
+.nuxt/
+.output/
+dist/
+
+# Tooling artifacts
+.playwright-cli/
+
+# Env & logs
+.env
+.env.*
+*.log
