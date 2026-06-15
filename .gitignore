@@ -17,3 +17,6 @@ dist/
 .env
 .env.*
 *.log
+
+# Deploy artifact (rebuild with: tar -a -c -f viontech-site.zip -C .output/public .)
+*.zip

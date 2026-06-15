@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const siteUrl = 'https://www.viontech.id'
+const siteUrl = 'https://viontech.co.id'
 const title = 'PT Viontech Integrasi Optima — Enterprise Infrastructure & AI Solution Provider'
 // Kept under ~160 chars so Google does not truncate it in the SERP snippet.
 const description =
@@ -45,7 +45,7 @@ useHead({
         slogan: 'Integrating Intelligence, Accelerating Innovation',
         description,
         email: 'admin@viontech.co.id',
-        telephone: '+6281281245552',
+        telephone: '+62817322890',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Jakarta',

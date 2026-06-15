@@ -1,0 +1,42 @@
+# ============================================================
+#  PT Viontech — static site config for Apache / LiteSpeed (cPanel)
+# ============================================================
+
+RewriteEngine On
+
+# ---- Force HTTPS + canonical host (non-www) ----
+# Any request on HTTP, or on the www.* host, is 301-redirected to
+# https://viontech.co.id/<same-path>. This is what makes the padlock
+# show up and stops the "still HTTP" problem.
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://viontech.co.id%{REQUEST_URI} [L,R=301]
+
+# ---- Pretty 404 ----
+ErrorDocument 404 /404.html
+
+# ---- Gzip / Brotli compression ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---- Cache static assets (hashed filenames = safe to cache long) ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 month"
+  ExpiresByType image/svg+xml           "access plus 1 month"
+  ExpiresByType image/x-icon            "access plus 1 month"
+  # HTML must always revalidate so content updates show immediately
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# ---- Security headers ----
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

@@ -1,8 +1,13 @@
 <script setup lang="ts">
 const contacts = [
-  { icon: 'phone', label: 'Telepon', value: '+62 812-8124-5552', href: 'tel:+6281281245552' },
+  {
+    icon: 'whatsapp',
+    label: 'WhatsApp',
+    value: '+62 817-322-890',
+    href: 'https://wa.me/62817322890?text=Halo%20Viontech%2C%20saya%20tertarik%20dengan%20layanan%20transformasi%20digital%20Anda.',
+  },
   { icon: 'mail', label: 'Email', value: 'admin@viontech.co.id', href: 'mailto:admin@viontech.co.id' },
-  { icon: 'globe', label: 'Website', value: 'www.viontech.id', href: 'https://www.viontech.id' },
+  { icon: 'globe', label: 'Website', value: 'viontech.co.id', href: 'https://viontech.co.id' },
   { icon: 'pin', label: 'Alamat', value: 'Jakarta, Indonesia', href: undefined },
 ]
 

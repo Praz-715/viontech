@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.viontech.id/sitemap.xml
+Sitemap: https://viontech.co.id/sitemap.xml
