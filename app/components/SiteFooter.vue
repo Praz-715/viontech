@@ -1,14 +1,20 @@
 <script setup lang="ts">
+import { company, partnerValues, waLink } from '~/data/company'
+
+const wa = waLink(
+  `Halo ${company.nama}, saya ingin bermitra untuk kebutuhan pengadaan barang & jasa.`,
+)
+
 const contacts = [
+  { icon: 'whatsapp', label: 'WhatsApp', value: company.telepon, href: wa },
+  { icon: 'mail', label: 'Email', value: company.email, href: `mailto:${company.email}` },
   {
-    icon: 'whatsapp',
-    label: 'WhatsApp',
-    value: '+62 817-322-890',
-    href: 'https://wa.me/62817322890?text=Halo%20Viontech%2C%20saya%20tertarik%20dengan%20layanan%20transformasi%20digital%20Anda.',
+    icon: 'globe',
+    label: 'Website',
+    value: company.website,
+    href: company.url,
   },
-  { icon: 'mail', label: 'Email', value: 'admin@viontech.co.id', href: 'mailto:admin@viontech.co.id' },
-  { icon: 'globe', label: 'Website', value: 'viontech.co.id', href: 'https://viontech.co.id' },
-  { icon: 'pin', label: 'Alamat', value: 'Jakarta, Indonesia', href: undefined },
+  { icon: 'pin', label: 'Alamat', value: company.alamat, href: undefined },
 ]
 
 const year = new Date().getFullYear()
@@ -17,15 +23,30 @@ const year = new Date().getFullYear()
 <template>
   <footer id="kontak" class="footer">
     <div class="container">
-      <div class="footer__panel card" v-reveal>
-        <div class="footer__intro">
-          <h2>HUBUNGI KAMI</h2>
+      <div class="footer__head" v-reveal>
+        <div>
+          <h2>Mari Bermitra dengan Kami</h2>
           <p>
-            Siap membantu transformasi digital Anda.
-            <strong>Hubungi kami untuk konsultasi gratis.</strong>
+            {{ company.nama }} siap menjadi mitra pengadaan barang dan jasa Anda — kualitas
+            terjamin, harga langsung dari pabrik,
+            <strong>pelayanan profesional, dan administrasi proyek yang andal.</strong>
           </p>
         </div>
+        <a :href="wa" class="footer__cta" target="_blank" rel="noopener">
+          <UiAppIcon name="whatsapp" :size="20" />
+          Hubungi via WhatsApp
+        </a>
+      </div>
 
+      <ul class="values" v-reveal="1">
+        <li v-for="v in partnerValues" :key="v.title">
+          <span class="values__icon"><UiAppIcon :name="v.icon" :size="22" /></span>
+          <strong>{{ v.title }}</strong>
+          <span>{{ v.desc }}</span>
+        </li>
+      </ul>
+
+      <div class="footer__panel card" v-reveal="2">
         <ul class="footer__contacts">
           <li v-for="c in contacts" :key="c.label">
             <span class="footer__icon"><UiAppIcon :name="c.icon" :size="20" /></span>
@@ -44,17 +65,17 @@ const year = new Date().getFullYear()
         </ul>
 
         <blockquote class="footer__quote">
-          <p>&ldquo;Integrasi Cerdas, Transformasi&nbsp;Nyata&rdquo;</p>
+          <p>&ldquo;Kami Bukan Sekadar Supplier, Tapi&nbsp;Partner&nbsp;Solusi&rdquo;</p>
           <cite>— PT VIONTECH INTEGRASI OPTIMA</cite>
         </blockquote>
       </div>
 
       <div class="footer__base">
         <div class="footer__brand">
-          <LogosViontechLogo :size="30" mono style="color: var(--text-muted)" />
-          <span>&copy; {{ year }} PT Viontech Integrasi Optima. Seluruh hak cipta dilindungi.</span>
+          <BrandLogo variant="mark" :height="30" />
+          <span>&copy; {{ year }} {{ company.nama }}. Seluruh hak cipta dilindungi.</span>
         </div>
-        <span class="footer__tagline">Integrating Intelligence, Accelerating Innovation</span>
+        <span class="footer__tagline">{{ company.tagline }}</span>
       </div>
     </div>
   </footer>
@@ -63,35 +84,115 @@ const year = new Date().getFullYear()
 <style scoped>
 .footer {
   padding-block: clamp(3rem, 6vw, 5rem) 1.75rem;
+  background: var(--bg-highlights);
 }
 
+.footer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer__head h2 {
+  font-family: var(--font-display);
+  font-stretch: 114%;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+  color: var(--text-strong);
+}
+
+.footer__head p {
+  margin-top: 0.8rem;
+  max-width: 62ch;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.footer__head strong {
+  color: var(--gold-ink);
+}
+
+.footer__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: none;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  background: var(--gold-grad);
+  color: var(--navy-950);
+  font-weight: 800;
+  font-size: 0.96rem;
+  box-shadow: 0 14px 30px -12px rgba(246, 185, 59, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.footer__cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 38px -12px rgba(246, 185, 59, 0.65);
+}
+
+/* ---- value grid ---- */
+.values {
+  list-style: none;
+  margin: 2.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.values li {
+  padding: 1.4rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+}
+
+.values__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(246, 185, 59, 0.13);
+  border: 1px solid rgba(246, 185, 59, 0.35);
+  color: var(--gold-400);
+  margin-bottom: 0.9rem;
+}
+
+.values strong {
+  display: block;
+  font-family: var(--font-display);
+  font-stretch: 106%;
+  font-weight: 800;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.values li > span:last-child {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ---- contact panel ---- */
 .footer__panel {
   display: grid;
-  grid-template-columns: 1.1fr 1.6fr 1fr;
+  grid-template-columns: 1.9fr 1fr;
   gap: 2rem;
   align-items: center;
-  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  margin-top: 1rem;
+  padding: clamp(1.5rem, 3.5vw, 2.2rem);
   border-radius: var(--radius-lg);
-}
-
-.footer__intro h2 {
-  font-family: var(--font-display);
-  font-stretch: 115%;
-  font-weight: 900;
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
-  color: var(--navy-800);
-}
-
-.footer__intro p {
-  margin-top: 0.6rem;
-  color: var(--ink-soft);
-  font-size: 0.94rem;
-  line-height: 1.6;
-}
-
-.footer__intro strong {
-  color: #b07a10;
 }
 
 .footer__contacts {
@@ -100,12 +201,12 @@ const year = new Date().getFullYear()
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.1rem 1.5rem;
+  gap: 1.2rem 1.5rem;
 }
 
 .footer__contacts li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 
@@ -123,11 +224,13 @@ const year = new Date().getFullYear()
 .footer__detail {
   display: flex;
   flex-direction: column;
-  line-height: 1.3;
+  gap: 0.15rem;
+  line-height: 1.4;
+  min-width: 0;
 }
 
 .footer__detail small {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--ink-soft);
@@ -137,7 +240,8 @@ const year = new Date().getFullYear()
 .footer__detail span {
   font-weight: 700;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
 }
 
 .footer__detail a:hover {
@@ -165,11 +269,12 @@ const year = new Date().getFullYear()
 }
 
 .footer__quote p {
+  position: relative;
   font-family: var(--font-display);
   font-weight: 800;
   font-style: italic;
-  font-size: 1.15rem;
-  line-height: 1.35;
+  font-size: 1.05rem;
+  line-height: 1.4;
   background: var(--gold-grad);
   -webkit-background-clip: text;
   background-clip: text;
@@ -180,9 +285,9 @@ const year = new Date().getFullYear()
   display: block;
   margin-top: 0.7rem;
   font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  color: var(--paper-dim); /* quote card stays navy in both themes */
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--paper-dim);
 }
 
 .footer__base {

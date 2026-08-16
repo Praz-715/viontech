@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'id' },
-      title: 'PT Viontech Integrasi Optima — Enterprise Infrastructure & AI Solution Provider',
+      title:
+        'PT Viontech Integrasi Optima — Pengadaan Furniture, Elektronik & Perlengkapan Instansi',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -21,7 +22,9 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/logo_viontech.ico' },
+        { rel: 'shortcut icon', href: '/logo_viontech.ico' },
+        { rel: 'apple-touch-icon', href: '/images/logo_viontech.webp' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

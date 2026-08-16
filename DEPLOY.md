@@ -54,8 +54,8 @@ public_html/
 ├── index.html       ← homepage (HTML sudah ter-render penuh)
 ├── 200.html, 404.html
 ├── _nuxt/           ← CSS & JS (nama ber-hash)
-├── logos/           ← 22 logo vendor
-├── favicon.svg, og-image.png
+├── images/          ← logo, 71 kartu produk, foto sektor (WebP, ±15 MB)
+├── logo_viontech.ico, favicon.ico, og-image.png
 ├── robots.txt, sitemap.xml
 └── _payload.json
 ```

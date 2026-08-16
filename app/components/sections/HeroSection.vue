@@ -1,18 +1,14 @@
 <script setup lang="ts">
-const pillars = ['AI', 'DATA', 'CLOUD', 'INFRASTRUCTURE', 'SECURITY', 'APPLICATION']
+import { company, promises, waLink } from '~/data/company'
+import { totalProducts, productCategories } from '~/data/products'
 
-const missions = [
-  'Membangun ekosistem teknologi yang optimal, scalable, dan sesuai kebutuhan klien.',
-  'Menghadirkan solusi modern AI, Cloud, Cybersecurity, dan Enterprise Infrastructure.',
-  'Menjadi mitra strategis dalam mendorong inovasi dan transformasi digital berkelanjutan.',
-  'Mengembangkan SDM profesional dan bersertifikasi.',
-  'Memberikan nilai tambah melalui pendekatan berbasis data dan analitik.',
-]
+const wa = waLink(
+  `Halo ${company.nama}, saya ingin konsultasi kebutuhan pengadaan barang & jasa.`,
+)
 </script>
 
 <template>
   <section class="hero" aria-label="Profil PT Viontech Integrasi Optima">
-    <!-- Layered atmosphere: grid, beams, glow -->
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__grid" />
       <div class="hero__glow hero__glow--gold" />
@@ -21,66 +17,59 @@ const missions = [
 
     <div class="container hero__inner">
       <div class="hero__main">
-        <div class="hero__brand" v-reveal>
-          <LogosViontechLogo :size="86" />
-          <div>
-            <p class="hero__brand-name">PT VIONTECH</p>
-            <p class="hero__brand-sub">— INTEGRASI OPTIMA —</p>
-            <p class="hero__brand-tag">Integrating Intelligence, Accelerating Innovation</p>
-          </div>
-        </div>
+        <!-- No logo lockup here: the carousel directly above already carries it. -->
+        <p class="hero__tagline" v-reveal>{{ company.tagline }}</p>
 
         <h1 class="hero__title" v-reveal="1">
-          ENTERPRISE INFRASTRUCTURE &amp;
-          <span class="text-gold">AI SOLUTION PROVIDER</span>
+          Solusi Pengadaan Terpercaya
+          <span class="text-gold">untuk Kebutuhan Anda</span>
         </h1>
 
-        <ul class="hero__pillars" v-reveal="2">
-          <li v-for="(p, i) in pillars" :key="p">
-            <span v-if="i" class="hero__dot" aria-hidden="true" />{{ p }}
-          </li>
-        </ul>
-
-        <p class="hero__desc" v-reveal="3">
-          PT Viontech Integrasi Optima adalah perusahaan teknologi integrasi terdepan yang
-          menghadirkan solusi digital cerdas, andal, dan inovatif untuk mempercepat transformasi
-          digital pemerintah, industri, dan masyarakat.
+        <p class="hero__desc" v-reveal="2">
+          {{ company.nama }} bergerak di bidang <strong>pengadaan barang dan jasa</strong>
+          untuk instansi pemerintah, TNI/Polri, BUMN, dan sektor swasta — menyediakan furniture,
+          elektronik, dan perlengkapan barak/asrama langsung dari pabrik.
         </p>
 
-        <div class="hero__actions" v-reveal="4">
-          <a href="#layanan" class="btn btn--gold">Jelajahi Layanan</a>
-          <a href="#kontak" class="btn btn--ghost">Konsultasi Gratis</a>
+        <div class="hero__actions" v-reveal="3">
+          <a href="#katalog" class="btn btn--gold">Lihat Katalog Produk</a>
+          <a :href="wa" class="btn btn--ghost" target="_blank" rel="noopener">
+            <UiAppIcon name="whatsapp" :size="18" />
+            Konsultasi Gratis
+          </a>
         </div>
+
+        <dl class="hero__stats" v-reveal="4">
+          <div>
+            <dt>{{ totalProducts }}+</dt>
+            <dd>Item produk katalog</dd>
+          </div>
+          <div>
+            <dt>100%</dt>
+            <dd>Barang original pabrik</dd>
+          </div>
+          <div>
+            <dt>{{ productCategories.length }}</dt>
+            <dd>Kategori produk</dd>
+          </div>
+          <div>
+            <dt>Nasional</dt>
+            <dd>Jangkauan pengiriman</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Visi & Misi panel — mirrors the infographic's right rail -->
-      <aside class="hero__vm" v-reveal="2" aria-label="Visi dan Misi">
-        <div class="vm__block">
-          <h2 class="vm__title">
-            <span class="vm__icon"><UiAppIcon name="telescope" :size="22" /></span>
-            VISI
-          </h2>
-          <p class="vm__text">
-            Menjadi perusahaan teknologi integrasi terdepan di Indonesia yang menghadirkan solusi
-            digital cerdas, andal, dan inovatif untuk mempercepat transformasi digital pemerintah,
-            industri, dan masyarakat.
-          </p>
-        </div>
-
-        <div class="vm__divider" aria-hidden="true" />
-
-        <div class="vm__block">
-          <h2 class="vm__title">
-            <span class="vm__icon"><UiAppIcon name="target" :size="22" /></span>
-            MISI
-          </h2>
-          <ol class="vm__list">
-            <li v-for="(misi, i) in missions" :key="i">
-              <span class="vm__num">{{ i + 1 }}</span>
-              <span>{{ misi }}</span>
-            </li>
-          </ol>
-        </div>
+      <aside class="hero__promises" v-reveal="2" aria-label="Komitmen layanan">
+        <p class="promises__eyebrow">Mengapa memilih kami</p>
+        <ul class="promises__list">
+          <li v-for="p in promises" :key="p.title">
+            <span class="promises__icon"><UiAppIcon :name="p.icon" :size="22" /></span>
+            <span>
+              <strong>{{ p.title }}</strong>
+              <small>{{ p.desc }}</small>
+            </span>
+          </li>
+        </ul>
       </aside>
     </div>
   </section>
@@ -90,7 +79,7 @@ const missions = [
 .hero {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(7rem, 13vw, 10rem) clamp(3.5rem, 7vw, 6rem);
+  padding-block: clamp(6.5rem, 12vw, 9rem) clamp(3.5rem, 7vw, 6rem);
   background: var(--bg-hero);
 }
 
@@ -135,56 +124,26 @@ const missions = [
 .hero__inner {
   position: relative;
   display: grid;
-  grid-template-columns: 1.55fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: clamp(2rem, 4vw, 4rem);
-  align-items: start;
-}
-
-/* ----- Brand lockup ----- */
-.hero__brand {
-  display: flex;
   align-items: center;
-  gap: 1.1rem;
-  margin-bottom: 2rem;
 }
 
-.hero__brand > div {
-  min-width: 0;
-}
-
-.hero__brand-name {
-  font-family: var(--font-display);
-  font-stretch: 118%;
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
-  color: var(--text-strong);
-  line-height: 1;
-}
-
-.hero__brand-sub {
-  margin-top: 0.25rem;
-  font-size: 0.74rem;
-  letter-spacing: 0.42em;
-  color: var(--gold-ink);
-  font-weight: 700;
-}
-
-.hero__brand-tag {
-  margin-top: 0.45rem;
-  font-style: italic;
+.hero__tagline {
   font-size: 0.82rem;
-  color: var(--link-accent);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
 }
 
-/* ----- Headline ----- */
 .hero__title {
+  margin-top: 0.7rem;
   font-family: var(--font-display);
   font-stretch: 116%;
   font-weight: 900;
-  font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
   line-height: 1.06;
-  letter-spacing: 0.01em;
   color: var(--text-strong);
   text-wrap: balance;
 }
@@ -194,51 +153,29 @@ const missions = [
   margin-top: 0.2rem;
 }
 
-/* ----- Pillar ticker ----- */
-.hero__pillars {
-  list-style: none;
-  margin: 1.4rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.9rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.86rem;
-  letter-spacing: 0.14em;
-  color: var(--text-body);
-}
-
-.hero__pillars li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-}
-
-.hero__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold-400);
-}
-
 .hero__desc {
-  margin-top: 1.5rem;
-  max-width: 54ch;
+  margin-top: 1.4rem;
+  max-width: 58ch;
   color: var(--text-muted);
   font-size: 1.02rem;
   line-height: 1.75;
 }
 
-/* ----- CTAs ----- */
+.hero__desc strong {
+  color: var(--text-body);
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  margin-top: 2.2rem;
+  margin-top: 2rem;
 }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-weight: 800;
   font-size: 0.95rem;
   padding: 0.85rem 1.8rem;
@@ -267,31 +204,72 @@ const missions = [
   transform: translateY(-3px);
 }
 
-/* ----- Visi & Misi rail ----- */
-.hero__vm {
+/* ----- Stat strip ----- */
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 1.6rem 2.4rem;
+  margin: 2.4rem 0 0;
+  padding-top: 1.7rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+.hero__stats dt {
+  font-family: var(--font-display);
+  font-stretch: 114%;
+  font-weight: 900;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__stats dd {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  max-width: 16ch;
+  color: var(--text-muted);
+}
+
+/* ----- Promise rail ----- */
+.hero__promises {
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  padding: clamp(1.4rem, 2.5vw, 2rem);
+  padding: clamp(1.4rem, 2.5vw, 1.9rem);
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-pop);
 }
 
-.vm__title {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-display);
-  font-stretch: 115%;
-  font-weight: 800;
-  font-size: 1.05rem;
-  letter-spacing: 0.18em;
-  color: var(--text-strong);
+.promises__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
 }
 
-.vm__icon {
-  width: 38px;
-  height: 38px;
+.promises__list {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.promises__list li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.promises__icon {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -301,47 +279,24 @@ const missions = [
   flex: none;
 }
 
-.vm__text {
-  margin-top: 0.9rem;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-}
-
-.vm__divider {
-  height: 1px;
-  margin-block: 1.4rem;
-  background: linear-gradient(90deg, transparent, rgba(246, 185, 59, 0.5), transparent);
-}
-
-.vm__list {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.vm__list li {
-  display: flex;
-  gap: 0.8rem;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.vm__num {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--gold-grad);
-  color: var(--navy-950);
+.promises__list strong {
+  display: block;
+  font-family: var(--font-display);
+  font-stretch: 108%;
   font-weight: 800;
-  font-size: 0.8rem;
-  display: grid;
-  place-items: center;
-  flex: none;
-  margin-top: 0.1rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  line-height: 1.3;
+}
+
+.promises__list small {
+  display: block;
+  margin-top: 0.28rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-muted);
 }
 
 @media (max-width: 1020px) {
@@ -350,24 +305,14 @@ const missions = [
   }
 }
 
-/* Tighten the brand lockup so the wide-tracked subtitle never overflows */
-@media (max-width: 480px) {
-  .hero__brand {
-    gap: 0.8rem;
+@media (max-width: 560px) {
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.3rem;
   }
 
-  .hero__brand svg {
-    width: 60px;
-    height: 60px;
-  }
-
-  .hero__brand-name {
-    font-size: 1.25rem;
-  }
-
-  .hero__brand-sub {
-    font-size: 0.64rem;
-    letter-spacing: 0.16em;
+  .hero__stats dd {
+    max-width: none;
   }
 }
 </style>

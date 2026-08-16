@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import { company, waLink } from '~/data/company'
+
 const links = [
-  { label: 'Layanan', href: '#layanan' },
-  { label: 'Teknologi', href: '#teknologi' },
-  { label: 'Target Pasar', href: '#target-pasar' },
-  { label: 'Mengapa Kami', href: '#mengapa' },
-  { label: 'Partnership', href: '#partnership' },
+  { label: 'Tentang', href: '#tentang' },
+  { label: 'Solusi', href: '#solusi' },
+  { label: 'Katalog', href: '#katalog' },
+  { label: 'Keunggulan', href: '#keunggulan' },
+  { label: 'Sektor', href: '#sektor' },
 ]
+
+const wa = waLink(
+  `Halo ${company.nama}, saya ingin menanyakan katalog produk dan penawaran pengadaan.`,
+)
 
 const open = ref(false)
 const scrolled = ref(false)
@@ -23,8 +29,8 @@ onMounted(() => {
 <template>
   <header class="header" :class="{ 'is-scrolled': scrolled }">
     <div class="container header__inner">
-      <a href="#" class="brand" aria-label="PT Viontech Integrasi Optima — beranda">
-        <LogosViontechLogo :size="42" />
+      <a href="#" class="brand" :aria-label="`${company.nama} — beranda`">
+        <BrandLogo variant="mark" :height="40" priority />
         <span class="brand__text">
           <strong>PT VIONTECH</strong>
           <small>Integrasi Optima</small>
@@ -35,7 +41,9 @@ onMounted(() => {
         <a v-for="link in links" :key="link.href" :href="link.href" @click="open = false">
           {{ link.label }}
         </a>
-        <a href="#kontak" class="nav__cta" @click="open = false">Hubungi Kami</a>
+        <a :href="wa" class="nav__cta" target="_blank" rel="noopener" @click="open = false">
+          Hubungi Kami
+        </a>
       </nav>
 
       <div class="header__tools">
@@ -185,7 +193,7 @@ onMounted(() => {
   border-radius: 2px;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 940px) {
   .burger {
     display: flex;
   }
