@@ -16,7 +16,7 @@ const index = ref(0)
 const paused = ref(false)
 
 const wa = waLink(
-  `Halo ${company.nama}, saya ingin konsultasi kebutuhan pengadaan barang & jasa.`,
+  `Halo ${company.nama}, saya ingin konsultasi kebutuhan IT solution / pengadaan barang & jasa.`,
 )
 
 const slideWidth = () => track.value?.clientWidth ?? 1
@@ -126,7 +126,7 @@ onUnmounted(() => clearInterval(timer))
     id="solusi"
     class="carousel"
     aria-roledescription="carousel"
-    aria-label="Solusi pengadaan terintegrasi"
+    aria-label="Solusi teknologi dan pengadaan terintegrasi"
     @mouseenter="paused = true"
     @mouseleave="paused = false"
     @focusin="paused = true"
@@ -166,12 +166,14 @@ onUnmounted(() => clearInterval(timer))
               <BrandLogo variant="full" :height="118" :priority="i === 0" />
             </div>
 
-            <p class="slide__eyebrow">Solusi Pengadaan Terintegrasi</p>
+            <p class="slide__eyebrow">{{ p.eyebrow }}</p>
             <h2 class="slide__title">{{ p.title }}</h2>
             <p class="slide__desc">{{ p.desc }}</p>
 
             <div class="slide__actions">
-              <a href="#katalog" class="btn btn--gold" @click="onLinkClick">Lihat Katalog</a>
+              <a :href="p.cta.href" class="btn btn--gold" @click="onLinkClick">
+                {{ p.cta.label }}
+              </a>
               <a
                 :href="wa"
                 class="btn btn--ghost"
@@ -189,8 +191,6 @@ onUnmounted(() => clearInterval(timer))
             <img
               :src="p.image"
               :alt="`${p.title} — ${company.nama}`"
-              width="1150"
-              height="1368"
               :loading="i === 0 ? 'eager' : 'lazy'"
               :fetchpriority="i === 0 ? 'high' : undefined"
               decoding="async"
@@ -396,13 +396,16 @@ onUnmounted(() => clearInterval(timer))
 /* ---------- right column ---------- */
 .slide__media {
   display: flex;
+  align-items: center;
   justify-content: center;
+  height: clamp(300px, 44vh, 470px);
 }
 
 .slide__media img {
-  width: auto;
   max-width: 100%;
-  height: clamp(300px, 44vh, 470px);
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   border-radius: var(--radius-md);
   -webkit-user-drag: none;
@@ -481,8 +484,8 @@ onUnmounted(() => clearInterval(timer))
     order: -1;
   }
 
-  .slide__media img {
-    height: clamp(240px, 34vh, 330px);
+  .slide__media {
+    height: clamp(230px, 32vh, 320px);
   }
 
   .slide__desc {

@@ -2,19 +2,18 @@
 import { company, legal } from '~/data/company'
 import { productCategories, totalProducts } from '~/data/products'
 
-const title =
-  'PT Viontech Integrasi Optima — Pengadaan Furniture, Elektronik & Perlengkapan Instansi'
+const title = 'PT Viontech Integrasi Optima — IT Solution & Pengadaan Barang / Jasa'
 // Kept under ~160 chars so Google does not truncate it in the SERP snippet.
 const description =
-  'Pengadaan barang & jasa untuk instansi pemerintah, TNI/Polri, BUMN, dan swasta. Furniture, elektronik, dan perlengkapan asrama original langsung dari pabrik.'
+  'Mitra IT solution dan pengadaan barang & jasa untuk pemerintah, TNI/Polri, BUMN, dan swasta: data center, cloud, jaringan, aplikasi, furniture & elektronik kantor.'
 // Longer copy for social shares, which allow more room than SERP snippets.
-const ogDescription = `${company.nama} menyediakan ${totalProducts} item furniture kantor, elektronik, perlengkapan barak/asrama, dan atribut protokoler instansi — kualitas terjamin, harga langsung dari pabrik, pengiriman nasional.`
+const ogDescription = `${company.nama} menghadirkan solusi IT — infrastruktur data center, cloud, database, jaringan & keamanan, hingga pengembangan aplikasi — sekaligus pengadaan ${totalProducts} item furniture kantor, elektronik, dan perlengkapan barak/asrama langsung dari pabrik.`
 
 useSeoMeta({
   title,
   description,
   keywords:
-    'pengadaan barang dan jasa, supplier furniture kantor, ALSATRI, perlengkapan asrama TNI Polri, lemari arsip besi, meja kursi kantor, elektronik kantor, papan data instansi, e-katalog LKPP, procurement jakarta',
+    'system integrator indonesia, it solution jakarta, data center, cloud, cybersecurity, oracle partner, fortinet partner, software development, pengadaan barang dan jasa, supplier furniture kantor, ALSATRI, perlengkapan asrama TNI Polri, elektronik kantor, e-katalog LKPP, procurement jakarta',
   ogTitle: title,
   ogDescription,
   ogType: 'website',
@@ -48,7 +47,6 @@ useHead({
         url: company.url,
         logo: `${company.url}${company.logo}`,
         image: `${company.url}/og-image.png`,
-        slogan: company.tagline,
         description,
         email: company.email,
         telephone: company.teleponE164,
@@ -63,7 +61,15 @@ useHead({
           postalCode: '12310',
           addressCountry: 'ID',
         },
-        knowsAbout: productCategories.map((c) => c.nama),
+        slogan: company.tagline,
+        knowsAbout: [
+          'Enterprise Infrastructure & Data Center',
+          'Cloud & Database Solutions',
+          'Network & Cybersecurity',
+          'Data Analytics & AI',
+          'Software Development',
+          ...productCategories.map((c) => c.nama),
+        ],
         makesOffer: productCategories.map((c) => ({
           '@type': 'Offer',
           itemOffered: { '@type': 'Product', name: c.nama, description: c.deskripsi },
@@ -79,9 +85,20 @@ useHead({
     <SectionsHeroCarousel />
     <SectionsHeroSection />
     <SectionsAboutSection />
+
+    <!-- IT solution block -->
+    <SectionsServicesSection />
+    <SectionsTechSection />
+    <SectionsPartnershipSection />
+    <SectionsWhySection />
+
+    <!-- Procurement block -->
     <SectionsCatalogSection />
     <SectionsAdvantagesSection />
+
+    <!-- Shared -->
     <SectionsMarketSection />
     <SectionsLegalSection />
+    <SectionsHighlightsSection />
   </main>
 </template>

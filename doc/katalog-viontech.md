@@ -4,7 +4,7 @@
 > PDF sumber tidak memiliki layer teks — seluruh isi di bawah ini ditranskrip dari gambar tiap halaman.
 > Seluruh gambar produk sudah tersedia sebagai WebP di `public/images/` dan dipakai langsung oleh situs.
 
-**9 kategori · 71 item produk**
+**9 kategori · 71 item produk** (lini pengadaan) — ditambah lini **IT Solution**, lihat bagian akhir dokumen.
 
 | | |
 |---|---|
@@ -275,17 +275,45 @@ PT Viontech Integrasi Optima siap menjadi mitra pengadaan barang dan jasa Anda �
 
 ---
 
-## Lima Pilar Solusi Terintegrasi
+## Tujuh Pilar Solusi Terintegrasi
 
-Dari banner "Solusi Pengadaan Terintegrasi untuk Semua Kebutuhan Anda":
+Dipakai sebagai slide carousel di bagian paling atas situs. Dua pilar pertama adalah
+lini **IT Solution** (bukan dari katalog PDF — lihat catatan di bawah), lima berikutnya
+adalah lini pengadaan dari banner "Solusi Pengadaan Terintegrasi".
 
-| Pilar | Gambar |
+| # | Pilar | Lini | Gambar |
+|---|---|---|---|
+| 1 | Infrastructure & Data Center | IT Solution | `/images/produk/01_Infra_Solution.webp` |
+| 2 | IT Smart Solution | IT Solution | `/images/produk/02_IT_Smart_Solution.webp` |
+| 3 | Furniture Kantor | Pengadaan | `/images/produk/03_Furniture_Kantor.webp` |
+| 4 | Elektronik | Pengadaan | `/images/produk/04_Elektronik.webp` |
+| 5 | Interior & Perlengkapan Ruangan | Pengadaan | `/images/produk/05_Interior_dan_Perlengkapan_Ruangan.webp` |
+| 6 | Perlengkapan Asrama & Hunian | Pengadaan | `/images/produk/06_Perlengkapan_Asrama_Hunian.webp` |
+| 7 | Perlengkapan Gudang & Logistik | Pengadaan | `/images/produk/07_Perlengkapan_Gudang_Logistik.webp` |
+
+## Lini IT Solution
+
+Tidak berasal dari katalog PDF 2026 — ditranskrip dari company profile sebelumnya di
+https://viontech.co.id dan tetap dipertahankan atas permintaan klien. Situs menampilkannya
+di section `#layanan` (Layanan & Solusi), `#teknologi` (Teknologi & Keahlian),
+`#partnership` (Partnership Strategy), dan `#mengapa` (Mengapa Viontech).
+
+| Layanan | Cakupan |
 |---|---|
-| Furniture Kantor | `/images/produk/01_Furniture_Kantor.webp` |
-| Elektronik | `/images/produk/02_Elektronik.webp` |
-| Interior & Perlengkapan Ruangan | `/images/produk/03_Interior_dan_Perlengkapan_Ruangan.webp` |
-| Perlengkapan Asrama & Hunian | `/images/produk/04_Perlengkapan_Asrama_Hunian.webp` |
-| Perlengkapan Gudang & Logistik | `/images/produk/05_Perlengkapan_Gudang_Logistik.webp` |
+| Infrastructure & Data Center | Enterprise Server · Storage · Virtualization · HCI · Backup & DR |
+| AI & Data Analytics | Artificial Intelligence · Machine Learning · Data Lake · Data Warehouse · BI & Dashboard |
+| Database Solutions | Oracle Database · PostgreSQL · MySQL · MongoDB |
+| Cloud Solutions | AWS · Huawei Cloud · Hybrid Cloud · Multi Cloud Architecture |
+| Network & Security | Fortinet · Cisco · Firewall & WAF · LAN/WAN · Security Architecture |
+| Software Development | Web Application · Mobile Application · API Development · Middleware Integration |
+
+Mitra vendor (SVG di `public/logos/`): Oracle · HPE · Dell · Lenovo · Nutanix · Fortinet ·
+Cisco · VMware · AWS · Huawei Cloud, ditambah Proxmox, PostgreSQL, MinIO, PureStorage,
+React, Vue, Laravel, Go, PHP, Node.js, Elastic, dan Metabase pada bagian teknologi.
+
+**Visi.** Menjadi perusahaan teknologi integrasi terdepan di Indonesia yang menghadirkan
+solusi digital cerdas, andal, dan inovatif untuk mempercepat transformasi digital
+pemerintah, industri, dan masyarakat.
 
 ## Catatan transkripsi
 

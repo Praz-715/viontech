@@ -18,21 +18,24 @@ const wa = waLink(
     <div class="container hero__inner">
       <div class="hero__main">
         <!-- No logo lockup here: the carousel directly above already carries it. -->
-        <p class="hero__tagline" v-reveal>{{ company.tagline }}</p>
+        <p class="hero__tagline" v-reveal>{{ company.eyebrow }}</p>
 
         <h1 class="hero__title" v-reveal="1">
-          Solusi Pengadaan Terpercaya
-          <span class="text-gold">untuk Kebutuhan Anda</span>
+          Solusi Teknologi &amp; Pengadaan
+          <span class="text-gold">Terpercaya untuk Instansi Anda</span>
         </h1>
 
         <p class="hero__desc" v-reveal="2">
-          {{ company.nama }} bergerak di bidang <strong>pengadaan barang dan jasa</strong>
-          untuk instansi pemerintah, TNI/Polri, BUMN, dan sektor swasta — menyediakan furniture,
-          elektronik, dan perlengkapan barak/asrama langsung dari pabrik.
+          {{ company.nama }} adalah <strong>mitra integrasi teknologi</strong> sekaligus penyedia
+          <strong>pengadaan barang &amp; jasa</strong> untuk instansi pemerintah, TNI/Polri, BUMN,
+          dan sektor swasta — dari infrastruktur data center, cloud, keamanan jaringan, dan
+          pengembangan aplikasi, hingga furniture kantor, elektronik, serta perlengkapan
+          barak/asrama langsung dari pabrik.
         </p>
 
         <div class="hero__actions" v-reveal="3">
-          <a href="#katalog" class="btn btn--gold">Lihat Katalog Produk</a>
+          <a href="#layanan" class="btn btn--gold">Layanan IT</a>
+          <a href="#katalog" class="btn btn--outline">Katalog Produk</a>
           <a :href="wa" class="btn btn--ghost" target="_blank" rel="noopener">
             <UiAppIcon name="whatsapp" :size="18" />
             Konsultasi Gratis
@@ -41,12 +44,12 @@ const wa = waLink(
 
         <dl class="hero__stats" v-reveal="4">
           <div>
-            <dt>{{ totalProducts }}+</dt>
-            <dd>Item produk katalog</dd>
+            <dt>2</dt>
+            <dd>Lini bisnis: IT solution &amp; pengadaan</dd>
           </div>
           <div>
-            <dt>100%</dt>
-            <dd>Barang original pabrik</dd>
+            <dt>{{ totalProducts }}+</dt>
+            <dd>Item produk katalog 2026</dd>
           </div>
           <div>
             <dt>{{ productCategories.length }}</dt>
@@ -192,6 +195,16 @@ const wa = waLink(
 .btn--gold:hover {
   transform: translateY(-3px);
   box-shadow: 0 20px 38px -12px rgba(246, 185, 59, 0.65);
+}
+
+.btn--outline {
+  border: 1.5px solid color-mix(in srgb, var(--gold-400) 55%, transparent);
+  color: var(--gold-ink);
+}
+
+.btn--outline:hover {
+  background: color-mix(in srgb, var(--gold-400) 12%, transparent);
+  transform: translateY(-3px);
 }
 
 .btn--ghost {

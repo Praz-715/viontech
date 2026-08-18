@@ -3,14 +3,14 @@ import { company, waLink } from '~/data/company'
 
 const links = [
   { label: 'Tentang', href: '#tentang' },
-  { label: 'Solusi', href: '#solusi' },
+  { label: 'Layanan IT', href: '#layanan' },
+  { label: 'Teknologi', href: '#teknologi' },
   { label: 'Katalog', href: '#katalog' },
-  { label: 'Keunggulan', href: '#keunggulan' },
   { label: 'Sektor', href: '#sektor' },
 ]
 
 const wa = waLink(
-  `Halo ${company.nama}, saya ingin menanyakan katalog produk dan penawaran pengadaan.`,
+  `Halo ${company.nama}, saya ingin menanyakan layanan IT dan penawaran pengadaan.`,
 )
 
 const open = ref(false)
